@@ -66,3 +66,5 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - npm install
 
 - php artisan migrate
+
+- php artisan preset react  (make setting for reactjs with laravel)
