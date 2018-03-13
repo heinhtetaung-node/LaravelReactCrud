@@ -60,5 +60,9 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 
 
-## composer requirement
+## Steps of Laravel React CRUD  requirement
 - composer create-project --prefer-dist laravel/laravel ReactJSLaravelTutorial
+
+- npm install
+
+-
