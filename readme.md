@@ -65,6 +65,28 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 - npm install
 
-- php artisan migrate
-
 - php artisan preset react  (make setting for reactjs with laravel)
+
+- go to welcome.blade.php and paste this code
+<!doctype html>
+<html lang="{{ app()->getLocale() }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Laravel</title>
+        <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div id="example"></div>
+        <script src="{{asset('js/app.js')}}" ></script>
+    </body>
+</html>
+
+- npm run dev
+
+- If cross-env error occour  (becox of not latest node)
+	npm install && npm run dev (This command will adjust version)
+
+- npm install react-router@3.2.0
+

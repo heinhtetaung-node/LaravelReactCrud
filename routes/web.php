@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('items/latest', 'ItemController@getLatest');
+
+Route::resource('items', 'ItemController');
