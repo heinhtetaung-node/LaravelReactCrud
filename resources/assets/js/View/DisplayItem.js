@@ -1,36 +1,32 @@
 import React, {Component} from 'react';
+import {browserHistory} from 'react-router';
+import ItemViewModel from '../ViewModel/ItemViewModel';
 import { Link } from 'react-router';
 import TableRow from './TableRow';
-import BaseComponent from '../Base/BaseComponent';
-import ItemModel from '../Models/ItemModel';
-
 var $this;
-class DisplayItem extends BaseComponent {
+class DisplayItem extends ItemViewModel {
     constructor(props) {
        super(props);
-       this.state = {value: '', items: ''};    
-       this.itemmodel = new ItemModel();   
+       this.getData();
     }
     componentDidMount(){
        $this = this;
-       this.getData();
        this.itemmodel.getItemLatest(function(response){
           console.log(response);
-       });
-    }
-    getData(){
-       $this.model.getData('items', function(response){
-         $this.setState({ items: response.data });
        });
     }
     tabRow(){
         if(this.state.items instanceof Array){
             return this.state.items.map(function(object, i){
-                return <TableRow obj={object} key={i} getData={$this.getData} />;
+                return <TableRow obj={object} key={i} deleteItem={$this.deleteItem} />;
             })
         }
     }
-
+    deleteItem(id){
+        $this.deleteItemSuper(id, function(){
+            $this.getData($this);
+        });        
+    }
     render(){
         return (
             <div>

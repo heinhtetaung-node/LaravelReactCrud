@@ -1,37 +1,11 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import BaseComponent from '../Base/BaseComponent';
+import ItemViewModel from '../ViewModel/ItemViewModel';
 
 var $this;
-class CreateItem extends BaseComponent {
+class CreateItem extends ItemViewModel {
     constructor(props){
-        super(props);
-        this.state = {productName: '', productPrice: ''};
-
-        this.handleChange1 = this.handleChange1.bind(this);
-        this.handleChange2 = this.handleChange2.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        $this = this;
-    }
-    handleChange1(e){
-        this.setState({
-          productName: e.target.value
-        })
-    }
-    handleChange2(e){
-        this.setState({
-          productPrice: e.target.value
-        })
-    }
-    handleSubmit(e){
-        e.preventDefault();
-        const products = {
-          name: this.state.productName,
-          price: this.state.productPrice
-        }
-        $this.model.saveData('items', products, function(response){
-          browserHistory.push('/display-item');
-        });
+        super(props);                
     }
     render() {
         return (

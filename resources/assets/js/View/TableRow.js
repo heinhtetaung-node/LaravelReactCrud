@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
-import BaseComponent from '../Base/BaseComponent';
+import ItemViewModel from '../ViewModel/ItemViewModel';
 var $this;
-class TableRow extends BaseComponent {
+class TableRow extends ItemViewModel {
   constructor(props) {
       super(props);
-      $this = this;
-      this.handleSubmit = this.handleSubmit.bind(this);           
+      $this = this;      
   }
   handleSubmit(event) {
-    event.preventDefault();
-    let uri = `items/${this.props.obj.id}`;
-    this.model.deleteData(uri, function(res){
-        browserHistory.push('/display-item');
-        $this.props.getData();
-    });      
+      event.preventDefault();
+      $this.props.deleteItem(this.props.obj.id);
+      //this.deleteItem(this.props.obj.id, function(){
+          
+      //});    
   }
   render() {
     return (
