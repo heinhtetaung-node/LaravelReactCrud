@@ -60,12 +60,38 @@ var $this;
 
 const ItemViewModel = DefineMap.extend({
     count: 'number',
+    productName: {
+        default: ''
+    },
+    productPrice: {
+        default: ''
+    },
+    itemmodel: {
+        default: new ItemModel(),
+    },
     increment: function() {
       return this.count++;
     },
     handleSubmit: function(e){
         alert("ei");
     },
+    handleChange1: function(e){
+        this.productName = e.target.value;        
+    },
+    handleChange2: function(e){
+        this.productPrice = e.target.value;
+    },
+    handleSubmit:function(e){
+        e.preventDefault();
+        const products = {
+            name: this.productName,
+            price: this.productPrice
+        }
+        this.itemmodel.save(products, function(response){
+            console.log(response);
+            browserHistory.push('/display-item');
+        });
+    }
 });
 
   
