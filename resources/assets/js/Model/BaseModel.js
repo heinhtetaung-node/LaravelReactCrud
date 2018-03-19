@@ -30,6 +30,26 @@ class BaseModel{
 			console.log(error);
 		})
 	}
+	save(data, callback) {
+		this.saveData(this.tableName, data, function(response){
+          	callback(response);
+        });
+	}
+	getAll(callback){
+        this.getData(this.tableName, function(response){
+            callback(response);
+        });
+    }
+    remove(id, callback){
+    	this.deleteData(this.tableName+'/'+id, function(response){
+        	callback(response);
+        });      
+	}
+	getOne(id, callback){
+		this.getData(this.tableName+'/'+id+'/edit', function(response){
+			callback(response);
+		});
+	}
 }
 
 export default BaseModel;

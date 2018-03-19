@@ -49,6 +49,17 @@ class ItemViewModel extends BaseViewModel {
             $this.getData($obj);           
         });        
     }
+    handleEdit(e, id){
+        e.preventDefault();
+        const products = {
+          name: this.state.productName,
+          price: this.state.productPrice,
+          id: id
+        }
+        this.itemmodel.save(products, function(response){
+            browserHistory.push('/display-item');
+        })
+    }
 }
 
 export default ItemViewModel;

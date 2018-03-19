@@ -48,8 +48,15 @@ class ItemController extends Controller
           'name' => $request->get('name'),
           'price' => $request->get('price')
         ]);
-        $item->save();
-        return response()->json('Successfully added');
+        if(!isset($request->id)){
+            $item->save();
+        }else{
+            $item = Item::find($request->id);
+            $item->name = $request->get('name');
+            $item->price = $request->get('price');
+            $item->save();
+        }        
+        return response()->json('Successfully saved');
     }
 
     /**
