@@ -6,14 +6,14 @@ import { Link } from 'react-router';
 var $this;
 class DisplayItem extends ItemViewModel {
     constructor(props) {
-       super(props);
-       this.getData();
+        super(props);
+        this.getData();
     }
     componentDidMount(){
-       $this = this;
-       this.itemmodel.getItemLatest(function(response){
-          console.log(response);
-       });
+        $this = this;
+        this.itemmodel.getItemLatest(function(response){
+            console.log(response);
+        });
     }
     tabRow(){
         if(this.state.items instanceof Array){
