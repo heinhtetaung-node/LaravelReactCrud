@@ -37,15 +37,16 @@ class ItemViewModel extends BaseViewModel {
     }
     getData($obj=null){
         this.itemmodel.getAll(function(response){
-            $this.setState({ items: response.data });
             if($obj!=null){
                 $obj.setState({ items: response.data });
+            }else{
+                $this.setState({ items: response.data });
             }
         });
     }
-    deleteItemSuper(id, callback){
+    deleteItem(id, $obj){
         $this.itemmodel.remove(id, function(response){            
-            callback(response);            
+            $this.getData($obj);           
         });        
     }
 }

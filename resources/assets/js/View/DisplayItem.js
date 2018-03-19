@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import ItemViewModel from '../ViewModel/ItemViewModel';
 import { Link } from 'react-router';
-import TableRow from './TableRow';
+
 var $this;
 class DisplayItem extends ItemViewModel {
     constructor(props) {
@@ -18,14 +18,11 @@ class DisplayItem extends ItemViewModel {
     tabRow(){
         if(this.state.items instanceof Array){
             return this.state.items.map(function(object, i){
-                return <TableRow obj={object} key={i} deleteItem={$this.deleteItem} />;
+                return (
+                  <SingleRow object={object} key={i} deleteItem={$this.deleteItem} />
+                )
             })
         }
-    }
-    deleteItem(id){
-        $this.deleteItemSuper(id, function(){
-            $this.getData($this);
-        });        
     }
     render(){
         return (
@@ -53,6 +50,35 @@ class DisplayItem extends ItemViewModel {
                     </tbody>
                 </table>
             </div>
+        )
+    }
+}
+
+class SingleRow extends ItemViewModel{
+    constructor(props) {
+        super(props);
+    }
+    render(){
+        return (
+            <tr>
+                <td>
+                    {this.props.object.id}
+                </td>
+                <td>
+                    {this.props.object.name}
+                </td>
+                <td>
+                    {this.props.object.price}
+                </td>
+                <td>
+                    <Link to={"edit/"+this.props.object.id} className="btn btn-primary">Edit</Link>
+                </td>
+                <td>
+                
+                <input onClick={() => this.props.deleteItem(this.props.object.id, $this)} type="button" value="Delete" className="btn btn-danger"/>
+                
+                </td>
+            </tr>
         )
     }
 }
